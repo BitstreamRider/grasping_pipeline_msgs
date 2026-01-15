@@ -1,0 +1,5 @@
+string grasp_object_name
+float64 timeout
+---
+bool success
+grasping_pipeline_msgs/BoundingBox3DStamped placement_area_bb
