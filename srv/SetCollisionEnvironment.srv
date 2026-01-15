@@ -1,0 +1,5 @@
+grasping_pipeline_msgs/BoundingBox3DStamped grasp_object_bb
+vision_msgs/BoundingBox3DArray table_bbs
+---
+bool success
+string grasp_object_name_moveit
