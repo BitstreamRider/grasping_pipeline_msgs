@@ -31,7 +31,6 @@ add_service_files(
   GetBBOfObjectsOnTable.srv
   GetPCOfObjectsOnTable.srv
   GoBack.srv
-  GoToAndLookAtPlacementArea.srv
   GoToWaypoint.srv
   GraspApproachVector.srv
   GraspCalculationTimeMax.srv
@@ -44,6 +43,7 @@ add_service_files(
   SetCollisionEnvironment.srv
   ShowOnlyBestGrasp.srv
   TablePlaneExtractor.srv
+  TextToSpeech.srv
   VisualizePoseEstimation.srv
 )
 
