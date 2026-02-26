@@ -24,6 +24,7 @@ add_message_files(
 add_service_files(
   FILES
   CallDirectGraspPoseEstimator.srv
+  CallMultipleDirectGraspPoseEstimator.srv
   CallObjectDetector.srv
   CallPoseEstimator.srv
   FetchImages.srv
@@ -53,6 +54,7 @@ add_action_files(
   CalcGraspPointsServer.action
   ExecuteGrasp.action
   FindGrasppoint.action
+  FindMultipleGrasppoint.action
   Handover.action
   Place.action
 )
