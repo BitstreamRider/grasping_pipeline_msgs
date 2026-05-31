@@ -1,8 +1,8 @@
 # Define the input for grasp calculation: a point cloud
-grasping_pipeline_msgs/GraspInput graspinput
+grasping_pipeline_msgs/GraspInput grasp_input
 ---
 # Define the result, if succeeded: defines grasp for gripper
-grasping_pipeline_msgs/GraspOutput graspOutput
+grasping_pipeline_msgs/GraspOutput grasp_output
 ---
 # Define a feedback message
 std_msgs/String feedback

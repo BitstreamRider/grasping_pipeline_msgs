@@ -1,5 +1,5 @@
 
-#Header header                        	# header for time/frame information
+#std_msgs/Header header                        	# header for time/frame information
 sensor_msgs/PointCloud2 input_pc     	# defines the point cloud on which grasps should be calculated (objects)
 string goal_frame_id				 	# the frame_id to which the point cloud should be transformed before grasps are calculated
 geometry_msgs/Point grasp_area_center 	# center of the region where grasps are searched
@@ -7,7 +7,7 @@ float32 grasp_area_length_x				# defines the length of the rectangle (in x direc
 float32 grasp_area_length_y				# defines the length of the rectangle (in y direction (in cm)) where grasps are searched (with center grasp_area_center)
 
 
-duration max_calculation_time			# maximal calculation time before grasp result is returned
+builtin_interfaces/Duration max_calculation_time			# maximal calculation time before grasp result is returned
 bool show_only_best_grasp				# If true, only the best grasp is shown in visualization
 int32 threshold_grasp_evaluation		# defines the threshold for return_first_grasp_over_th if it is set to true (otherwise it is ignored)
 
