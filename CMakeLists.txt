@@ -1,74 +1,82 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(grasping_pipeline_msgs)
 
-find_package(catkin REQUIRED
-  genmsg 
-  actionlib
-  actionlib_msgs
-  geometry_msgs
-  std_msgs
-  vision_msgs
-  object_detector_msgs
+# Required for ROS 2
+find_package(ament_cmake REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+# Message / action dependencies
+find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(vision_msgs REQUIRED)
+find_package(builtin_interfaces REQUIRED)
+find_package(action_msgs REQUIRED)
+
+# If this package depends on messages from here
+find_package(object_detector_msgs REQUIRED)
+
+# Message files
+set(msg_files
+  "msg/BoundingBox3DStamped.msg"
+  "msg/GraspInput.msg"
+  "msg/GraspOutput.msg"
+  "msg/Plane.msg"
 )
 
-## Generate messages in the 'msg' folder
-add_message_files(
-  FILES
-  BoundingBox3DStamped.msg
-  GraspInput.msg
-  GraspOutput.msg
-  Plane.msg
+# Service files
+set(srv_files
+  "srv/CallDirectGraspPoseEstimator.srv"
+  "srv/CallMultipleDirectGraspPoseEstimator.srv"
+  "srv/CallObjectDetector.srv"
+  "srv/CallPoseEstimator.srv"
+  "srv/FetchImages.srv"
+  "srv/FindTablePlanes.srv"
+  "srv/GetBBOfObjectsOnTable.srv"
+  "srv/GetPCOfObjectsOnTable.srv"
+  "srv/GoBack.srv"
+  "srv/GoToWaypoint.srv"
+  "srv/GraspApproachVector.srv"
+  "srv/GraspCalculationTimeMax.srv"
+  "srv/GraspMethodSelector.srv"
+  "srv/GraspPreGripperOpeningWidth.srv"
+  "srv/GraspSearchCenter.srv"
+  "srv/GraspSearchRectangleSize.srv"
+  "srv/MoveToJointPositions.srv"
+  "srv/RemoveNonTableObjects.srv"
+  "srv/SetCollisionEnvironment.srv"
+  "srv/ShowOnlyBestGrasp.srv"
+  "srv/TablePlaneExtractor.srv"
+  "srv/TextToSpeech.srv"
+  "srv/VisualizePoseEstimation.srv"
 )
 
-## Generate services in the 'srv' folder
-add_service_files(
-  FILES
-  CallDirectGraspPoseEstimator.srv
-  CallMultipleDirectGraspPoseEstimator.srv
-  CallObjectDetector.srv
-  CallPoseEstimator.srv
-  FetchImages.srv
-  FindTablePlanes.srv
-  GetBBOfObjectsOnTable.srv
-  GetPCOfObjectsOnTable.srv
-  GoBack.srv
-  GoToWaypoint.srv
-  GraspApproachVector.srv
-  GraspCalculationTimeMax.srv
-  GraspMethodSelector.srv
-  GraspPreGripperOpeningWidth.srv
-  GraspSearchCenter.srv
-  GraspSearchRectangleSize.srv
-  MoveToJointPositions.srv
-  RemoveNonTableObjects.srv
-  SetCollisionEnvironment.srv
-  ShowOnlyBestGrasp.srv
-  TablePlaneExtractor.srv
-  TextToSpeech.srv
-  VisualizePoseEstimation.srv
+# Action files
+set(action_files
+  "action/CalcGraspPointsServer.action"
+  "action/ExecuteGrasp.action"
+  "action/FindGrasppoint.action"
+  "action/FindMultipleGrasppoint.action"
+  "action/Handover.action"
+  "action/Place.action"
 )
 
-# Generate actions in the 'action' folder
-add_action_files(
-  FILES
-  CalcGraspPointsServer.action
-  ExecuteGrasp.action
-  FindGrasppoint.action
-  FindMultipleGrasppoint.action
-  Handover.action
-  Place.action
-)
-
-# Generate added messages and services with any dependencies listed here
-generate_messages(
+# Generate interfaces
+rosidl_generate_interfaces(${PROJECT_NAME}
+  ${msg_files}
+  ${srv_files}
+  ${action_files}
   DEPENDENCIES
-  actionlib_msgs
-  geometry_msgs
-  std_msgs 
-  vision_msgs
-  object_detector_msgs
+    geometry_msgs
+    std_msgs
+    sensor_msgs
+    vision_msgs
+    builtin_interfaces
+    action_msgs
 )
 
-catkin_package()
+# Export runtime dependencies
+ament_export_dependencies(rosidl_default_runtime)
+ament_export_include_directories(include)
 
-include_directories()
+ament_package()
