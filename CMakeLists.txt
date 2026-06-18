@@ -67,6 +67,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   ${srv_files}
   ${action_files}
   DEPENDENCIES
+    object_detector_msgs
     geometry_msgs
     std_msgs
     sensor_msgs
